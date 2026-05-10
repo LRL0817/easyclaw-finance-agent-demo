@@ -232,7 +232,7 @@ h1 {
 
 .metrics {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 150px));
+  grid-template-columns: repeat(4, minmax(0, 132px));
   gap: 12px;
   margin-top: 42px;
 }
@@ -550,6 +550,87 @@ article p,
   font-size: 21px;
 }
 
+.code-band {
+  background:
+    linear-gradient(rgba(19, 31, 50, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(19, 31, 50, 0.045) 1px, transparent 1px),
+    #f7f9fc;
+  background-size: 34px 34px, 34px 34px, auto;
+}
+
+.code-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(360px, 0.92fr);
+  gap: 18px;
+  max-width: 1160px;
+  margin-inline: auto;
+}
+
+.code-panel,
+.code-checks {
+  border: 1px solid #dbe4ef;
+  border-radius: var(--radius);
+  background: #fff;
+  box-shadow: 0 16px 42px rgba(18, 30, 48, 0.07);
+}
+
+.code-panel {
+  padding: 30px;
+}
+
+.code-label {
+  display: inline-flex;
+  margin-bottom: 18px;
+  padding: 6px 10px;
+  border-radius: var(--radius);
+  background: #eef8ff;
+  color: #00799a;
+  font-family: "Cascadia Mono", Consolas, monospace;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.code-panel h3 {
+  font-size: 28px;
+}
+
+.code-panel p {
+  max-width: 680px;
+  margin-bottom: 26px;
+  color: #667386;
+}
+
+.code-checks {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow: hidden;
+}
+
+.code-checks li {
+  padding: 22px;
+  border-bottom: 1px solid #dbe4ef;
+  color: #536174;
+}
+
+.code-checks li:last-child {
+  border-bottom: 0;
+}
+
+.code-checks span {
+  display: block;
+  margin-bottom: 8px;
+  color: #0f172a;
+  font-family: "Cascadia Mono", Consolas, monospace;
+  font-weight: 900;
+}
+
+code {
+  font-family: "Cascadia Mono", Consolas, monospace;
+}
+
 .split {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 380px;
@@ -608,7 +689,8 @@ dd {
   }
 
   .flow-grid,
-  .bank-layout {
+  .bank-layout,
+  .code-layout {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -647,7 +729,8 @@ dd {
   .metrics,
   .deck-grid,
   .flow-grid,
-  .bank-layout {
+  .bank-layout,
+  .code-layout {
     grid-template-columns: 1fr;
   }
 

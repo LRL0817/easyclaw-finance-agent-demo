@@ -22,6 +22,7 @@
       <nav aria-label="页面导航">
         <a href="#workflow">智能流程</a>
         <a href="#banks">银行矩阵</a>
+        <a href="#code">项目代码</a>
         <a href="#safety">安全边界</a>
       </nav>
     </header>
@@ -38,7 +39,7 @@
             </p>
             <div class="hero-actions">
               <a class="button primary" href="#workflow">查看智能流程</a>
-              <a class="button secondary" href="#safety">了解安全设计</a>
+              <a class="button secondary" href="#code">查看脱敏代码</a>
             </div>
             <div class="metrics" aria-label="能力指标">
               <div>
@@ -52,6 +53,10 @@
               <div>
                 <strong>0</strong>
                 <span>敏感数据上云</span>
+              </div>
+              <div>
+                <strong>55</strong>
+                <span>脱敏代码文件</span>
               </div>
             </div>
           </div>
@@ -173,6 +178,38 @@
             <span>ABC</span>
             <strong>农业银行</strong>
           </div>
+        </div>
+      </section>
+
+      <section id="code" class="band code-band">
+        <div class="section-head">
+          <p class="eyebrow">Reviewable Code Package</p>
+          <h2>提交包包含脱敏后的真实项目代码结构</h2>
+          <p>
+            公开仓库不只放演示页，还附带从本机财务自动化项目整理出的脱敏代码副本，便于评审查看实现方式、模块边界和自动化链路。
+          </p>
+        </div>
+        <div class="code-layout">
+          <div class="code-panel">
+            <span class="code-label">sanitized-code/finance-automation</span>
+            <h3>保留核心工程，移除敏感材料</h3>
+            <p>
+              代码包覆盖 OA 合同付款数据获取、合同新增监控、招行 U-BANK 制单，以及工行、中行、农行、兴业等入口脚本。
+            </p>
+            <a
+              class="button primary"
+              href="https://github.com/LRL0817/easyclaw-finance-agent-demo/tree/main/sanitized-code/finance-automation"
+              target="_blank"
+              rel="noreferrer"
+            >
+              打开 GitHub 代码目录
+            </a>
+          </div>
+          <ul class="code-checks" aria-label="脱敏处理清单">
+            <li><span>Removed</span><code>.env</code>、浏览器 profile、日志、截图、真实 JSON</li>
+            <li><span>Masked</span>真实 OA 域名、付款单位、本机路径、长账号数字</li>
+            <li><span>Included</span>Python 脚本、SKILL.md、README、运行入口和示例配置</li>
+          </ul>
         </div>
       </section>
 
