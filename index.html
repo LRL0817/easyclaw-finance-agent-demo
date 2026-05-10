@@ -12,113 +12,182 @@
   </head>
   <body>
     <header class="topbar">
-      <div class="brand">
+      <a class="brand" href="#top" aria-label="返回首页">
         <span class="brand-mark" aria-hidden="true">¥</span>
-        <span>财务付款 Agent</span>
-      </div>
+        <span>
+          <strong>财务付款 Agent</strong>
+          <small>Finance Ops Autopilot</small>
+        </span>
+      </a>
       <nav aria-label="页面导航">
-        <a href="#workflow">流程</a>
-        <a href="#banks">银行</a>
-        <a href="#safety">安全</a>
+        <a href="#workflow">智能流程</a>
+        <a href="#banks">银行矩阵</a>
+        <a href="#safety">安全边界</a>
       </nav>
     </header>
 
-    <main>
-      <section class="hero">
-        <div class="hero-copy">
-          <p class="eyebrow">Local Finance Automation</p>
-          <h1>从合同付款到网银制单的一体化财务 Agent</h1>
-          <p class="lead">
-            自动监控 OA 合同付款新增数据，抽取付款字段，生成银行制单数据，并驱动招行 U-BANK、工行、中行、兴业、农行等流程完成填单。
-          </p>
-          <div class="hero-actions">
-            <a class="button primary" href="#workflow">查看工作流</a>
-            <a class="button secondary" href="#safety">安全边界</a>
+    <main id="top">
+      <section class="hero" aria-label="财务付款 Agent 总览">
+        <canvas id="data-field" aria-hidden="true"></canvas>
+        <div class="hero-shell">
+          <div class="hero-copy">
+            <p class="eyebrow">Local Finance Automation Agent</p>
+            <h1>把合同付款制单变成一条可监控的自动化流水线</h1>
+            <p class="lead">
+              财务付款 Agent 持续监听 OA 合同付款新增单据，自动抽取付款字段，生成银行制单数据，并驱动多家企业网银完成填单。
+            </p>
+            <div class="hero-actions">
+              <a class="button primary" href="#workflow">查看智能流程</a>
+              <a class="button secondary" href="#safety">了解安全设计</a>
+            </div>
+            <div class="metrics" aria-label="能力指标">
+              <div>
+                <strong>30s</strong>
+                <span>默认轮询间隔</span>
+              </div>
+              <div>
+                <strong>5+</strong>
+                <span>银行入口适配</span>
+              </div>
+              <div>
+                <strong>0</strong>
+                <span>敏感数据上云</span>
+              </div>
+            </div>
           </div>
-        </div>
 
-        <div class="console-panel" aria-label="演示流程面板">
-          <div class="panel-title">
-            <span>运行状态</span>
-            <span class="status-dot">在线监控</span>
-          </div>
-          <div class="terminal">
-            <p><span>01</span> 刷新 OA 合同付款列表 iframe</p>
-            <p><span>02</span> 发现新流水号 YLHTSP-2026-****</p>
-            <p><span>03</span> 抽取收款单位、开户行、金额、用途</p>
-            <p><span>04</span> 生成 bank_form.json</p>
-            <p><span>05</span> 切换 U 盾并打开银行制单页面</p>
-            <p><span>06</span> 自动填单，等待人工确认提交</p>
+          <div class="command-deck" aria-label="实时演示指挥台">
+            <div class="deck-top">
+              <div>
+                <p class="deck-kicker">Mission Control</p>
+                <h2>付款任务态势</h2>
+              </div>
+              <span class="live-badge">LIVE</span>
+            </div>
+
+            <div class="pipeline" aria-label="自动化流水线">
+              <div class="node active">
+                <span>OA</span>
+                <strong>监听</strong>
+              </div>
+              <div class="connector"></div>
+              <div class="node active">
+                <span>JSON</span>
+                <strong>映射</strong>
+              </div>
+              <div class="connector"></div>
+              <div class="node">
+                <span>USB</span>
+                <strong>切换</strong>
+              </div>
+              <div class="connector"></div>
+              <div class="node">
+                <span>BANK</span>
+                <strong>制单</strong>
+              </div>
+            </div>
+
+            <div class="terminal">
+              <p><span>01</span> report iframe refreshed</p>
+              <p><span>02</span> flow_id detected: YLHTSP-2026-****</p>
+              <p><span>03</span> beneficiary, bank, amount extracted</p>
+              <p><span>04</span> bank_form.json generated</p>
+              <p><span>05</span> U-Shield port matched by payer</p>
+              <p><span>06</span> awaiting human confirmation</p>
+            </div>
+
+            <div class="deck-grid">
+              <div class="mini-card">
+                <span>状态</span>
+                <strong>自动监控中</strong>
+              </div>
+              <div class="mini-card">
+                <span>失败策略</span>
+                <strong>不标记 seen</strong>
+              </div>
+              <div class="mini-card">
+                <span>执行环境</span>
+                <strong>Windows 本机</strong>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       <section id="workflow" class="band">
         <div class="section-head">
-          <p class="eyebrow">Workflow</p>
-          <h2>端到端闭环</h2>
+          <p class="eyebrow">Autonomous Workflow</p>
+          <h2>从“发现新单”到“等待确认”的完整闭环</h2>
+          <p>
+            Agent 不只是填表脚本，而是把状态追踪、异常恢复、字段校验和多银行适配串成一条稳定的财务流水线。
+          </p>
         </div>
         <div class="flow-grid">
           <article>
-            <span class="step">1</span>
-            <h3>监控新增付款</h3>
-            <p>定时刷新 OA 合同付款报表，按流水号识别新单据并保留处理状态。</p>
+            <span class="step">01</span>
+            <h3>合同付款监控</h3>
+            <p>定时刷新 OA 财务报表，识别新增流水号，按出现顺序处理并写入状态文件。</p>
           </article>
           <article>
-            <span class="step">2</span>
-            <h3>抽取付款字段</h3>
-            <p>从穿透详情中提取收款户名、账号、开户行、金额、用途和单据编号。</p>
+            <span class="step">02</span>
+            <h3>穿透详情抽取</h3>
+            <p>进入付款详情页，读取收款单位、银行账户、开户银行、金额和单据编号。</p>
           </article>
           <article>
-            <span class="step">3</span>
-            <h3>映射银行表单</h3>
-            <p>生成统一的 bank_form.json，并按银行规则拆分总行、支行和用途字段。</p>
+            <span class="step">03</span>
+            <h3>银行字段映射</h3>
+            <p>按统一 schema 生成 bank_form.json，拆分总行和支行，校验必填项。</p>
           </article>
           <article>
-            <span class="step">4</span>
-            <h3>驱动网银制单</h3>
-            <p>使用 Playwright、pywinauto 和 pyautogui 操作浏览器或桌面客户端。</p>
+            <span class="step">04</span>
+            <h3>网银自动制单</h3>
+            <p>驱动浏览器或桌面客户端填表，成功后才标记处理完成，失败保留重试。</p>
           </article>
         </div>
       </section>
 
-      <section id="banks" class="band alt">
-        <div class="section-head">
-          <p class="eyebrow">Coverage</p>
-          <h2>已适配的财务场景</h2>
+      <section id="banks" class="band dark">
+        <div class="section-head compact">
+          <p class="eyebrow">Bank Matrix</p>
+          <h2>覆盖浏览器银行与桌面客户端</h2>
         </div>
-        <div class="feature-grid">
-          <article>
-            <h3>招行 U-BANK</h3>
-            <p>读取 bank_form.json，进入单笔转账经办页面，自动填收方账号、户名、银行、支行、金额和用途。</p>
-          </article>
-          <article>
-            <h3>多银行入口</h3>
-            <p>覆盖工商银行、中国银行、农业银行、兴业银行等入口脚本，兼容网页银行和桌面客户端。</p>
-          </article>
-          <article>
-            <h3>U 盾切换</h3>
-            <p>按付款单位选择对应 USB Hub 端口，降低多公司、多 U 盾场景下的人工切换成本。</p>
-          </article>
-          <article>
-            <h3>异常可恢复</h3>
-            <p>制单失败不标记已处理，监控任务会保留流水号并在下一轮重试，避免漏单。</p>
-          </article>
+        <div class="bank-layout">
+          <div class="bank-card primary-bank">
+            <span class="chip">核心路径</span>
+            <h3>招商银行 U-BANK</h3>
+            <p>读取付款 JSON，进入单笔转账经办页面，自动完成收方账号、户名、支行、金额、用途等字段。</p>
+          </div>
+          <div class="bank-card">
+            <span>ICBC</span>
+            <strong>工商银行</strong>
+          </div>
+          <div class="bank-card">
+            <span>BOC</span>
+            <strong>中国银行</strong>
+          </div>
+          <div class="bank-card">
+            <span>CIB</span>
+            <strong>兴业银行</strong>
+          </div>
+          <div class="bank-card">
+            <span>ABC</span>
+            <strong>农业银行</strong>
+          </div>
         </div>
       </section>
 
       <section id="safety" class="band">
         <div class="section-head">
-          <p class="eyebrow">Safety</p>
-          <h2>本地运行，敏感信息不外传</h2>
+          <p class="eyebrow">Local First Security</p>
+          <h2>敏感信息留在本机，最终付款保留人工确认</h2>
         </div>
         <div class="split">
-          <div>
+          <div class="security-copy">
             <p>
-              系统运行在 Windows 本机，银行凭据、OA 登录态、浏览器 profile 和制单数据都保存在本地目录。演示页仅展示架构和能力，不包含真实账号、客户名称、付款数据或银行截图。
+              系统运行在 Windows 本机，银行凭据、OA 登录态、浏览器 profile 和制单数据都保存在本地目录。公开演示只展示架构和能力，不包含真实账号、客户名称、付款数据或银行截图。
             </p>
             <p>
-              付款提交仍保留人工确认环节，Agent 负责监控、抽取、填表和异常提示，最终资金动作由财务人员确认。
+              Agent 负责监控、抽取、填表、异常提示和状态恢复。涉及资金的最终提交动作仍由财务人员确认，兼顾效率与控制权。
             </p>
           </div>
           <dl class="facts">
@@ -142,5 +211,7 @@
         </div>
       </section>
     </main>
+
+    <script src="./script.js"></script>
   </body>
 </html>
