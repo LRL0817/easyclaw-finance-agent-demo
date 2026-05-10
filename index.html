@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>财务付款 Agent 演示</title>
+    <meta
+      name="description"
+      content="从 OA 合同付款监控到多银行自动制单的本地财务自动化 Agent 演示页。"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">¥</span>
+        <span>财务付款 Agent</span>
+      </div>
+      <nav aria-label="页面导航">
+        <a href="#workflow">流程</a>
+        <a href="#banks">银行</a>
+        <a href="#safety">安全</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Local Finance Automation</p>
+          <h1>从合同付款到网银制单的一体化财务 Agent</h1>
+          <p class="lead">
+            自动监控 OA 合同付款新增数据，抽取付款字段，生成银行制单数据，并驱动招行 U-BANK、工行、中行、兴业、农行等流程完成填单。
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#workflow">查看工作流</a>
+            <a class="button secondary" href="#safety">安全边界</a>
+          </div>
+        </div>
+
+        <div class="console-panel" aria-label="演示流程面板">
+          <div class="panel-title">
+            <span>运行状态</span>
+            <span class="status-dot">在线监控</span>
+          </div>
+          <div class="terminal">
+            <p><span>01</span> 刷新 OA 合同付款列表 iframe</p>
+            <p><span>02</span> 发现新流水号 YLHTSP-2026-****</p>
+            <p><span>03</span> 抽取收款单位、开户行、金额、用途</p>
+            <p><span>04</span> 生成 bank_form.json</p>
+            <p><span>05</span> 切换 U 盾并打开银行制单页面</p>
+            <p><span>06</span> 自动填单，等待人工确认提交</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="workflow" class="band">
+        <div class="section-head">
+          <p class="eyebrow">Workflow</p>
+          <h2>端到端闭环</h2>
+        </div>
+        <div class="flow-grid">
+          <article>
+            <span class="step">1</span>
+            <h3>监控新增付款</h3>
+            <p>定时刷新 OA 合同付款报表，按流水号识别新单据并保留处理状态。</p>
+          </article>
+          <article>
+            <span class="step">2</span>
+            <h3>抽取付款字段</h3>
+            <p>从穿透详情中提取收款户名、账号、开户行、金额、用途和单据编号。</p>
+          </article>
+          <article>
+            <span class="step">3</span>
+            <h3>映射银行表单</h3>
+            <p>生成统一的 bank_form.json，并按银行规则拆分总行、支行和用途字段。</p>
+          </article>
+          <article>
+            <span class="step">4</span>
+            <h3>驱动网银制单</h3>
+            <p>使用 Playwright、pywinauto 和 pyautogui 操作浏览器或桌面客户端。</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="banks" class="band alt">
+        <div class="section-head">
+          <p class="eyebrow">Coverage</p>
+          <h2>已适配的财务场景</h2>
+        </div>
+        <div class="feature-grid">
+          <article>
+            <h3>招行 U-BANK</h3>
+            <p>读取 bank_form.json，进入单笔转账经办页面，自动填收方账号、户名、银行、支行、金额和用途。</p>
+          </article>
+          <article>
+            <h3>多银行入口</h3>
+            <p>覆盖工商银行、中国银行、农业银行、兴业银行等入口脚本，兼容网页银行和桌面客户端。</p>
+          </article>
+          <article>
+            <h3>U 盾切换</h3>
+            <p>按付款单位选择对应 USB Hub 端口，降低多公司、多 U 盾场景下的人工切换成本。</p>
+          </article>
+          <article>
+            <h3>异常可恢复</h3>
+            <p>制单失败不标记已处理，监控任务会保留流水号并在下一轮重试，避免漏单。</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="safety" class="band">
+        <div class="section-head">
+          <p class="eyebrow">Safety</p>
+          <h2>本地运行，敏感信息不外传</h2>
+        </div>
+        <div class="split">
+          <div>
+            <p>
+              系统运行在 Windows 本机，银行凭据、OA 登录态、浏览器 profile 和制单数据都保存在本地目录。演示页仅展示架构和能力，不包含真实账号、客户名称、付款数据或银行截图。
+            </p>
+            <p>
+              付款提交仍保留人工确认环节，Agent 负责监控、抽取、填表和异常提示，最终资金动作由财务人员确认。
+            </p>
+          </div>
+          <dl class="facts">
+            <div>
+              <dt>语言</dt>
+              <dd>Python</dd>
+            </div>
+            <div>
+              <dt>浏览器自动化</dt>
+              <dd>Playwright</dd>
+            </div>
+            <div>
+              <dt>桌面自动化</dt>
+              <dd>pywinauto / pyautogui</dd>
+            </div>
+            <div>
+              <dt>状态管理</dt>
+              <dd>JSON + 本地 profile</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
